@@ -1,0 +1,10 @@
+sudo npm install -g puppeteer@latest
+sudo npm install -g docs-to-pdf
+sudo chmod +x /usr/local/bin/docs-to-pdf
+sudo npm install -g fs-extra
+sudo apt update && sudo apt install -y chromium-browser
+export PUPPETEER_EXECUTABLE_PATH=$(which chromium-browser)
+npx docs-to-pdf docusaurus --initialDocURLs="http://localhost:3000/docs/intro" --contentSelector="article" --paginationSelector="a.pagination-nav__link.pagination-nav__link--next"
+
+
+https://github.com/jean-humann/docs-to-pdf
