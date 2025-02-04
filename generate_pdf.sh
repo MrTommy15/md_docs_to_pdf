@@ -2,6 +2,14 @@
 
 echo "🚀 Génération de PDF depuis une documentation Docusaurus"
 
+DIR_PATH="./PDF_files"
+# Vérifier si le dossier existe
+if [[ ! -d "$DIR_PATH" ]]; then
+    echo "📂 Le dossier $DIR_PATH n'existe pas. Création en cours..."
+    mkdir -p "$DIR_PATH"
+    echo "✅ Dossier créé : $DIR_PATH"
+fi
+
 # Demander l'URL de base
 read -p "👉 Entrez l'URL de base de votre documentation (ex: http://localhost:3000/docs/): " PAGE_URL
 
@@ -15,8 +23,11 @@ fi
 read -p "📄 Voulez-vous générer un PDF d'une seule page (1) ou de toute la documentation (2) ? " CHOIX
 
 if [[ "$CHOIX" == "1" ]]; then
+    # Demande du nom du fichier en pdf
+    read -p "📄 Entrez le nom du fichier PDF (sans l'extension) : " PDF_NAME
+
     echo "📄 Génération du PDF pour la page $PAGE_URL..."
-    npx docs-to-pdf docusaurus --initialDocURLs="$PAGE_URL" --contentSelector="article" --paginationSelector="non-existent-selector"
+    npx docs-to-pdf docusaurus --initialDocURLs="$PAGE_URL" --contentSelector="article" --paginationSelector="non-existent-selector" --outputPDFFilename="$DIR_PATH/$PDF_NAME.pdf"
     echo "✅ PDF généré pour la page unique."
 elif [[ "$CHOIX" == "2" ]]; then
     read -p "📂 Voulez-vous un seul PDF (1) ou un PDF par page (2) ? " SPLIT_CHOICE
