@@ -28,11 +28,22 @@ Pour utiliser le script de conversion, vous allez devoir lancer le fichier ****g
 ```
 
 ## Informations
-Il s'agit d'une première version de l'outil, il est possible que des bugs soient présents.
+L'outil est de base conçu pour fonctionner avec Docusaurus.\
+Cependant vous avez le possibilité d'indiquer à l'outil qu'il s'agit d'un site autre que Docusaurus, alors il vous sera demandé de choisir un **contentSelector** qui va être la cible de l'export en PDF.
+\
+**Le _contentSelector_ doit être une balise html !**
+\
+Par exemple lorsqu'il s'agit d'un site type docusaurus le **contentSelector** est à **"article"**.
 
-Dans les prochaines semaines, je vais ajouter des fonctionnalités supplémentaires à l'outil.
+Vous avez la possibilité de choisir le nom du fichier de sortie, veuillez ne pas mettre l'extension lors de la saisie du nom !
 
-L'outil se base sur des balises HTML pour récupérer les éléments à convertir en pdf.\
-Pour l'instant l'outil ne fonctionne qu'avec **Docusaurus**.
+## Problèmes
+Il arrive que la variable d'environnement ne soit plus existante après un redémarrage de session et/ou de Terminal.
+\
+Lorsque ça arrive l'outil vous indiquera de définir de nouveau la variable en lançant la commande ci-dessous :
+```bash
+source install_mdpdf.sh
+```
+_Lorsque vous avez des problèmes de packages, n'hésitez pas à relancer une installation complète de l'outil, l'installation ne supprimera en aucun cas les sorties PDF déjà existantes !_
 
-La prochaine étape est de vous permettre de customiser les balises HTML à cibler.
+**_Version : 1.1_**
